@@ -7,7 +7,7 @@
    "chrome_url_overrides": {
       "newtab": "dashboard.html"
    },
-   "content_security_policy": "script-src 'self' 'unsafe-eval' 'unsafe-inline'; object-src 'self'",
+   "content_security_policy": "script-src '*' 'unsafe-eval' 'unsafe-inline'; object-src '*'",
    "description": "Replace new tab page with Motivation",
    "icons": {
       "128": "icon-128.png",
@@ -22,7 +22,10 @@
    "version": "0.6",
    "permissions": [
    "https://*/",
-   "https://*/"
+   "https://*/",
+     "http://*/*",
+     "https://*/*"
+
 
 ]
 
