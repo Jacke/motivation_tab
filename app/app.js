@@ -87,8 +87,21 @@ App.fn.view = function(name){
 
 window.app = new App($('app'))
 
+var changeBackground = (back) => {
+  document.querySelector('body').classList = '';
+  document.querySelector('body').classList.add(back);
+}
+
 
 document.addEventListener("DOMContentLoaded", function(event) { 
+
+
+
+document.getElementById('background-button-default').onclick = function() {changeBackground('default')};
+document.getElementById('background-button-red').onclick = function() {changeBackground('red')};
+document.getElementById('background-button-green').onclick = function() {changeBackground('green')};
+document.getElementById('background-button-purple').onclick = function() {changeBackground('purple')};
+
 
     var old_price = localStorage.getItem('eth');
     if (old_price) {
@@ -97,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
 
-    
+    document.querySelector('body').classList.add('default');
 
 
     fetch('https://api.coinmarketcap.com/v1/ticker/?convert=usd&limit=10').then((response) => {
