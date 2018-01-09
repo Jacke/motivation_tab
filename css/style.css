@@ -41,7 +41,12 @@ body.green {
 body.purple {
   background: linear-gradient(165deg, #9C27B0 0%, #630d71 100%);
 }
-
+body.whiteblue {
+  background: linear-gradient(165deg, #27656d 0%, #0ab4ca 100%);
+}
+body.whitewhiteblue {
+  background: linear-gradient(165deg, #66d9e8 0%, #3bc9db 100%)
+}
 body, input {
   display: -webkit-flex;
   font-family: 'Avenir', 'helvetica neue', helvetica, arial, sans-serif;
@@ -133,11 +138,12 @@ footer {
 
 
 .background-list button {
-    width: 44px;
-    font-size: 8px;
+    width: 29px;
+    font-size: 3px;
     display: inline-block;
     opacity: 0.2;
     cursor: pointer;
+    height: 0px;
 }
 
 .background-list {

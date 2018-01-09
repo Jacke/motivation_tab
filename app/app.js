@@ -90,6 +90,7 @@ window.app = new App($('app'))
 var changeBackground = (back) => {
   document.querySelector('body').classList = '';
   document.querySelector('body').classList.add(back);
+  localStorage.setItem('background', back)
 }
 
 
@@ -101,7 +102,8 @@ document.getElementById('background-button-default').onclick = function() {chang
 document.getElementById('background-button-red').onclick = function() {changeBackground('red')};
 document.getElementById('background-button-green').onclick = function() {changeBackground('green')};
 document.getElementById('background-button-purple').onclick = function() {changeBackground('purple')};
-
+document.getElementById('background-button-whiteblue').onclick = function() {changeBackground('whiteblue')};
+document.getElementById('background-button-whitewhiteblue').onclick = function() {changeBackground('whitewhiteblue')};
 
     var old_price = localStorage.getItem('eth');
     if (old_price) {
@@ -110,7 +112,13 @@ document.getElementById('background-button-purple').onclick = function() {change
     }
 
 
-    document.querySelector('body').classList.add('default');
+    if(localStorage.getItem('background')) {
+      document.querySelector('body').classList = '';
+      document.querySelector('body').classList.add(localStorage.getItem('background'));
+    } else {
+      document.querySelector('body').classList = '';
+      document.querySelector('body').classList.add('default');
+    }
 
 
     fetch('https://api.coinmarketcap.com/v1/ticker/?convert=usd&limit=10').then((response) => {
@@ -122,14 +130,22 @@ document.getElementById('background-button-purple').onclick = function() {change
       localStorage.setItem('eth', eth.price_usd);      
       console.log(document.querySelector('.eth-count'));
       console.log(document.querySelector('body'))
+     window.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
+     console.log('web3', Web3, window.web3);
+
+
       if (document.querySelector('.eth-count') != null) {
         document.querySelector('.eth-count').innerHTML = '$ '+eth.price_usd.split('.')[0] + `<sup>.${eth.price_usd.split('.')[1]}</sup>`;
       }
+
+      if (document.querySelector('.eth-balance-count') != null) {
+        var balance = window.web3.eth.getBalance('0x34cc574b4528799b5c0a2aa9fda71fd0830a6086');
+        document.querySelector('.eth-balance-count').innerHTML = `${window.web3.fromWei(balance, 'ether').toString().slice(0,6)} ETH`;
+      }
+
     });
 
 
-     window.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
-     console.log('web3', Web3, window.web3);
 
 
 });
