@@ -121,6 +121,35 @@ document.getElementById('background-button-whitewhiteblue').onclick = function()
     }
 
 
+ const unwrapUrl = (url) => {
+  if (url.includes('chrome-extension://klbibkeccnjlkjkiokjodocebajanakg/suspended')) {
+    console.log('wrapped', url, url.split('uri=')[1])
+    return url.split('uri=')[1];
+  } else {
+    return url;
+  }
+ }   
+
+/***
+ * Tabs list
+ */
+
+ console.log('Tabs');
+ chrome.tabs.getCurrent((c) => {
+  console.log(c);
+ })
+ chrome.tabs.getAllInWindow((c) => {
+  console.log(c);
+  c.map(tab => {
+    chrome.tabs.get(tab.id, (existedTab) => console.log('existedTab url: ', 
+      unwrapUrl( existedTab.url) 
+    ));
+  });
+ })
+
+
+ /////////// ETH Balance fethcher
+
     fetch('https://api.coinmarketcap.com/v1/ticker/?convert=usd&limit=10').then((response) => {
       return response.json();
     }).then((json) => {
@@ -144,6 +173,7 @@ document.getElementById('background-button-whitewhiteblue').onclick = function()
       }
 
     });
+
 
 
 
