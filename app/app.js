@@ -159,7 +159,7 @@ document.getElementById('background-button-whitewhiteblue').onclick = function()
       localStorage.setItem('eth', eth.price_usd);      
       console.log(document.querySelector('.eth-count'));
       console.log(document.querySelector('body'))
-     window.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
+     window.web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/LjMVIfNpbOOPz2auuHUW"));
      console.log('web3', Web3, window.web3);
 
 
